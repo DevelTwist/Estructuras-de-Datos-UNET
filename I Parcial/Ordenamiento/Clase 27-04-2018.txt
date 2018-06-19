@@ -1,0 +1,107 @@
+METODO DE ORDENACIÓN :
+
+Selección directa 
+
+ Se realiza en n-1 fases o etapas, posicionando el menor/mayor en un extremo del arreglo.
+
+V = { 19, 14, 11, 15, 12 } N
+
+FASE I: Se recorre posicion 0....4 buscando el menor.
+		
+	Menor: [11]    PosicionMenor: [2]
+	Intercambio( V[0] , V[PosicionMenor])
+	V = { [11], 14, 19, 15, 12 }
+
+FASE II: Se recorre posicion 1....4 buscando el menor.
+
+	Menor: [12]    PosicionMenor: [4]
+	Intercambio( V[1] , V[PosicionMenor])
+	V = { [11], [12], 19, 15, 14 }
+
+FASE II: Se recorre posicion 2....4 buscando el menor.
+
+	Menor: [14]    PosicionMenor: [4]
+	Intercambio( V[2] , V[PosicionMenor])
+	V = { [11], [12], [14], 15, 19 }
+
+    .
+    .
+    .
+ FIN DEL ALGORTIMO.
+
+-----------------------------------------------------------------------------------------------------------------------
+ 
+   Codigo Selección Directa:
+		
+
+   void SELDIR(int V[], int N){
+     
+	int aux, posmen, men, i, j;
+	
+	for(j = 1; j < N, J++){
+	 
+  	   men = V[j-1]; posmen = j-1;	   
+	 
+	   for( i = j ; i < N ; i++){
+
+		if( V[i] < men){		
+		men = V[i];	
+		posmen = i;
+		}
+
+	   }
+	
+
+	   if ( posmen != j-1 ){
+	     Intercambio(V[posmen], V[j-1]);
+	   }
+	}
+
+}
+	
+--------------------------------------------------------------------------------------------------------------------------
+
+
+void Intercambio( int &a, int &b){
+
+	int aux = a;
+	a = b;
+	b = aux;
+
+}
+
+------------------------------------------------------------------------------------------------------------------------
+
+void main(){
+
+	int num[5] = { 19, 14, 11, 15, 12 };
+	Imprimir(num, sizeof(num)/sizeof(int));
+	Seldir(num, sizeof(num)/sizeof(int));
+	Imprimir(num, sizeof(num)/sizeof(int));
+	
+}
+
+••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+
+
+METODO DE ORDENACION SHELL SORT: 
+
+V = { 19, 14 , 11 , 15 ,12, 13, 10, 16, 18, 17 }
+
+FASE I: 
+
+	PASO = N/2; (5) -> Distancia de 5
+	V = {  19 ,  14 ,  11 , 15, 12,  13 ,  10 ,  16 , 18, 17 }
+	V = { [13],  14 ,  11 , 15, 12, [19],  10 ,  16 , 18, 17 }
+	V = {  13 , [10],  11 , 15, 12,  19 , [14],  16 , 18, 17 }
+	V = {  13 ,  10 , [11], 15, 12,  19 ,  14 , [16], 18, 17 } NO INTERCAMBIAN
+	
+	REPITE FASE I:
+	V = {  13 ,  10 , 11 , 15 , 12 , 19 , 14 , 16 , 18 , 17 }  FIN FASE I:
+
+FASE 2: PASO = PASO/2  -> Distancia 2
+	
+	V = {  [13] ,   10  , [11] ,  15  ,  12  ,  19  , 14 , 16 , 18 , 17 }
+	V = {   11  ,  [10] ,  13  , [15] ,  12  ,  19  , 14 , 16 , 18 , 17 }  NO INTERCAMBIA
+	V = {   11  ,   10  , [13] ,  15  , [12] ,  19  , 14 , 16 , 18 , 17 }
+	V = {   11  ,   10  ,  12  , [15] ,  13  , [19] , 14 , 16 , 18 , 17 }  NO INTERCAMBIA
